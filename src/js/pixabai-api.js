@@ -1,9 +1,9 @@
-export default function searchImagesByQuery(query) {
+export default function searchImagesByQuery(query, page) {
     const URL = 'https://pixabay.com/api/';
     const API_KEY = '45506482-0746cd613ccb32219c9653431';
   
     return fetch(
-      `${URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`
+      `${URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`
     )
       .then(response => {
         if (!response.ok) {
@@ -16,5 +16,6 @@ export default function searchImagesByQuery(query) {
           position: 'topRight',
           message: `${error}`,
         });
+        throw error;
       });
   }

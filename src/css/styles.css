@@ -1,9 +1,3 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
 @import url('./reset.css');
 @import url('./vite-promo.css');
 @import url('./header.css');
@@ -13,10 +7,8 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color: #242424;
   background-color: rgba(255, 255, 255, 0.87);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,7 +16,7 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.wraper {
+.wrapper {
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
@@ -32,62 +24,73 @@
 }
 
 .button {
-  width: 90px;
+  width: 100px;
   height: 40px;
   background-color: lightskyblue;
   border: none;
+  cursor: pointer;
 }
 
 .input-for-gallery {
-  padding: 12px;
+  padding: 10px;
   border-radius: 4px;
   border: 1px solid #808080;
+  width: 500px;
 }
 
-.input-for-gallery:active {
-  border: 1px solid blue;
+.input-for-gallery:focus {
+  border-color: blue;
 }
 
 .gallery-form {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
   margin-bottom: 16px;
 }
 
+.gallery-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+  justify-content: center;
+}
+
 .image-frame {
   border: 1px solid #808080;
-  width: 360px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 .image {
-  height: 152px;
-  width: 360px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.gallery-list {
+.text-wrapper {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 24px 24px;
+  justify-content: center;
 }
 
 .text-block {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #ddd;
 }
 
-.text-wraper {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: center;
+.text-block > p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
 }
 
 .loader {
-  display: block;
+  display: none;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -95,6 +98,10 @@
   animation: rotate 1s linear infinite;
   text-align: center;
   margin: 0 auto;
+}
+
+.loader.active {
+  display: block;
 }
 
 .loader::before,
@@ -117,7 +124,6 @@
   0% {
     transform: rotate(0deg)
   }
-
   100% {
     transform: rotate(360deg)
   }
@@ -127,17 +133,15 @@
   0% {
     clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
   }
-
   50% {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
   }
-
   75%,
   100% {
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
   }
 }
 
-.hiden {
+.hidden {
   display: none;
 }

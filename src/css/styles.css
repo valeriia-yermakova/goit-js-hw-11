@@ -35,7 +35,8 @@
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #808080;
-  width: 500px;
+  width: 100%; /* Робимо адаптивним */
+  max-width: 500px;
 }
 
 .input-for-gallery:focus {
@@ -90,18 +91,18 @@
 }
 
 .loader {
-  display: none;
+  visibility: hidden;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   position: relative;
   animation: rotate 1s linear infinite;
   text-align: center;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 .loader.active {
-  display: block;
+  visibility: visible;
 }
 
 .loader::before,
@@ -144,4 +145,20 @@
 
 .hidden {
   display: none;
+}
+
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .input-for-gallery {
+    width: 100%;
+    max-width: none;
+  }
+
+  .gallery-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 }

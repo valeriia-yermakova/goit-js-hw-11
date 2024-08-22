@@ -14,7 +14,7 @@ form.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   clearImages();
   event.preventDefault();
-  loader.classList.remove('hidden');
+  loader.classList.add('active');  
 
   const wordForSearch = input.value.trim();
   const page = 1;
@@ -24,7 +24,7 @@ function handleSubmit(event) {
       position: 'topRight',
       message: 'Please fill the input',
     });
-    loader.classList.add('hidden');
+    loader.classList.remove('active'); 
     return;
   }
 
@@ -35,7 +35,7 @@ function handleSubmit(event) {
           position: 'topRight',
           message: 'Sorry, there are no images matching your search query. Please try again!',
         });
-        loader.classList.add('hidden');
+        loader.classList.remove('active');  
         return;
       } else {
         createImages(data);
@@ -43,18 +43,23 @@ function handleSubmit(event) {
           position: 'topRight',
           message: `Found ${data.total} images.`,
         });
-        lightbox.refresh(); 
+
+        if (!lightbox) {
+          lightbox = initLightbox();
+        } else {
+          lightbox.refresh(); 
+        }
       }
     })
     .catch(error => {
       iziToast.error({
         position: 'topRight',
-        message: `An error occurred: ${error}`,
+        message: `An error occurred: ${error.message}`,
       });
     })
     .finally(() => {
-      loader.classList.add('hidden');
+      loader.classList.remove('active'); 
     });
 }
 
-initLightbox();
+lightbox = initLightbox();
